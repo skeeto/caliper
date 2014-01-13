@@ -23,6 +23,7 @@
 ;;; Code:
 
 (require 'cl-lib)
+(require 'predd)
 
 (defvar caliper--object-sizes
   (mapcar (lambda (kind) (cons (nth 0 kind) (nth 1 kind))) (garbage-collect))
