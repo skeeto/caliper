@@ -93,7 +93,7 @@ return type.")
          (+ (position-bytes (point-max))
             (- (position-bytes (point-min)))
             (gap-size)
-            (cl-loop for (var . value) in (buffer-local-variables)
+            (cl-loop for (_ . value) in (buffer-local-variables)
                      sum (caliper-object-size value))))))))
 
 (predd-defmethod caliper-object-size 'hash-table (object)
