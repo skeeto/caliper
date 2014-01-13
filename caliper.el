@@ -94,6 +94,7 @@ return type.")
          (+ (position-bytes (point-max))
             (- (position-bytes (point-min)))
             (gap-size)
+            ;; warning is Emacs bug#15326
             (cl-loop for (_ . value) in (buffer-local-variables)
                      sum (caliper-object-size value))))))))
 
@@ -113,7 +114,8 @@ return type.")
       (float
        (+ (* 135 slot-size) ; estimate from lisp.h
           (let ((count 0))
-            (map-char-table (lambda (_ v) (incf count (caliper-object-size v)))
+            (map-char-table (lambda (_ v)
+                              (cl-incf count (caliper-object-size v)))
                             object)
             count)
           (let ((parent (char-table-parent object)))
