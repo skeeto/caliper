@@ -83,6 +83,7 @@ return type.")
 (predd-defmethod caliper-object-size 'symbol (object)
   (caliper-check-seen object
     (+ (caliper-kind-size 'symbols)
+       (caliper-object-size (symbol-plist object))
        (caliper-object-size (symbol-name object)))))
 
 (predd-defmethod caliper-object-size 'buffer (object)
